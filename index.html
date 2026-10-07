@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم الأصيل | أشهى المشويات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Tajawal', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #FFF9F0; color: #2B1810; }
+        .gold { color: #D4A017; }
+        .bg-gold { background-color: #D4A017; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.85) 100%); }
+        .menu-slide { transition: transform 0.3s ease-in-out; }
+        .dish-card { transition: all 0.3s ease; }
+        .dish-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .filter-btn.active { background-color: #8B0000; color: #fff; border-color: #8B0000; }
+        input, textarea, select { outline: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#2B1810]/95 backdrop-blur-md border-b border-[#D4A017]/30 px-5 py-3 flex justify-between items-center">
+        <button onclick="toggleMenu()" class="text-xl text-white"><i class="fa-solid fa-bars"></i></button>
+        <a href="#home" class="flex items-center gap-2">
+            <i class="fa-solid fa-utensils gold text-xl"></i>
+            <h1 class="text-2xl font-black tracking-wider text-white">الأصيل</h1>
+        </a>
+        <a href="#contact" class="text-xl text-white"><i class="fa-solid fa-phone"></i></a>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative min-h-[550px] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200');">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative z-10 text-center text-white px-6 max-w-2xl space-y-5">
+            <span class="text-xs tracking-widest gold font-medium">مطعم الأصيل · منذ 2005</span>
+            <h2 class="text-4xl md:text-6xl font-black leading-tight">طعم <span class="gold">الأصالة</span><br>في كل لقمة</h2>
+            <p class="text-sm opacity-90 font-light leading-relaxed max-w-lg mx-auto">أشهى المشويات المصرية الأصيلة، محضّرة بأجود المكونات وأيدي أمهر الطهاة.</p>
+            <div class="flex gap-3 justify-center pt-3 flex-wrap">
+                <a href="#menu" class="px-6 py-3 bg-[#D4A017] hover:bg-[#b8880f] text-black text-sm font-bold transition shadow-lg rounded-sm">
+                    <i class="fa-solid fa-book-open ml-2"></i> شوف المنيو
+                </a>
+                <a href="#contact" class="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/40 text-white text-sm font-medium hover:bg-white/20 transition rounded-sm">
+                    <i class="fa-brands fa-whatsapp ml-2"></i> اطلب الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="max-w-5xl mx-auto px-4 py-16 text-center">
+        <span class="text-xs text-stone-500 font-light">عن الأصيل</span>
+        <h3 class="text-3xl md:text-4xl font-black text-[#2B1810] mt-2">قصتنا</h3>
+        <div class="w-20 h-1 bg-[#D4A017] mx-auto mt-4"></div>
+        <p class="text-stone-600 leading-loose text-sm md:text-base mt-6 max-w-3xl mx-auto">
+            بدأت رحلتنا في عام 2005 بمطعم صغير في قلب القاهرة، برؤية بسيطة: تقديم المشويات المصرية الأصيلة بأجود المكونات.
+            اليوم، بعد أكثر من 20 عامًا، أصبح مطعم الأصيل وجهة عشاق المشويات الأصيلة في مصر.
+        </p>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="bg-[#FFF5E6] py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-xs text-stone-500 font-light">قائمة الطعام</span>
+                <h3 class="text-3xl md:text-4xl font-black text-[#2B1810] mt-2">منيو الأصيل</h3>
+                <div class="w-20 h-1 bg-[#D4A017] mx-auto mt-4"></div>
+            </div>
+
+            <div class="flex gap-2 justify-center flex-wrap mb-10">
+                <button onclick="filterDishes('all', this)" class="filter-btn active px-5 py-2 bg-white border border-stone-300 text-stone-700 rounded-sm text-xs font-bold">الكل</button>
+                <button onclick="filterDishes('مشويات', this)" class="filter-btn px-5 py-2 bg-white border border-stone-300 text-stone-700 rounded-sm text-xs font-bold">مشويات</button>
+                <button onclick="filterDishes('أطباق جانبية', this)" class="filter-btn px-5 py-2 bg-white border border-stone-300 text-stone-700 rounded-sm text-xs font-bold">أطباق جانبية</button>
+                <button onclick="filterDishes('مشروبات', this)" class="filter-btn px-5 py-2 bg-white border border-stone-300 text-stone-700 rounded-sm text-xs font-bold">مشروبات</button>
+            </div>
+
+            <div id="dishes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <span class="text-xs text-stone-500 font-light">ليه الأصيل؟</span>
+            <h3 class="text-3xl md:text-4xl font-black text-[#2B1810] mt-2">مميزاتنا</h3>
+            <div class="w-20 h-1 bg-[#D4A017] mx-auto mt-4"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center p-6 bg-white rounded-sm shadow-sm border-t-4 border-[#8B0000]">
+                <div class="w-14 h-14 bg-[#8B0000] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-fire text-white text-xl"></i>
+                </div>
+                <h4 class="font-black text-sm mb-1">فحم طبيعي</h4>
+                <p class="text-xs text-stone-500">شوي على الفحم الأصلي</p>
+            </div>
+            <div class="text-center p-6 bg-white rounded-sm shadow-sm border-t-4 border-[#8B0000]">
+                <div class="w-14 h-14 bg-[#8B0000] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-leaf text-white text-xl"></i>
+                </div>
+                <h4 class="font-black text-sm mb-1">مكونات طازجة</h4>
+                <p class="text-xs text-stone-500">طازج يوميًا</p>
+            </div>
+            <div class="text-center p-6 bg-white rounded-sm shadow-sm border-t-4 border-[#8B0000]">
+                <div class="w-14 h-14 bg-[#8B0000] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-truck-fast text-white text-xl"></i>
+                </div>
+                <h4 class="font-black text-sm mb-1">توصيل سريع</h4>
+                <p class="text-xs text-stone-500">في أقل من 45 دقيقة</p>
+            </div>
+            <div class="text-center p-6 bg-white rounded-sm shadow-sm border-t-4 border-[#8B0000]">
+                <div class="w-14 h-14 bg-[#8B0000] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-award text-white text-xl"></i>
+                </div>
+                <h4 class="font-black text-sm mb-1">جودة مضمونة</h4>
+                <p class="text-xs text-stone-500">20 سنة خبرة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-[#2B1810] text-white py-16 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-xs tracking-widest gold">تواصل معنا</span>
+                <h3 class="text-3xl md:text-4xl font-black mt-2">اطلب الآن</h3>
+                <div class="w-20 h-1 bg-[#D4A017] mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-[#D4A017] rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-location-dot text-black"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm">العنوان</p>
+                            <p class="text-sm text-stone-400">شارع التحرير، الدقي، الجيزة</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-[#D4A017] rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-phone text-black"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm">للحجز والطلب</p>
+                            <p class="text-sm text-stone-400" dir="ltr">+20 100 000 0000</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-[#D4A017] rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-clock text-black"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm">ساعات العمل</p>
+                            <p class="text-sm text-stone-400">يوميًا: 11 ص - 2 ص</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/201000000000" target="_blank" class="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-sm font-bold text-sm hover:bg-green-700 transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> اطلب على واتساب
+                    </a>
+                </div>
+
+                <form onsubmit="submitOrder(event)" class="bg-white/5 p-6 rounded-sm border border-[#D4A017]/30 space-y-4">
+                    <h4 class="font-black text-lg mb-2 gold">احجز طاولة</h4>
+                    <input required type="text" placeholder="الاسم" class="w-full bg-transparent border border-[#D4A017]/40 px-4 py-2.5 text-sm text-white placeholder-stone-500 rounded-sm focus:border-[#D4A017]">
+                    <input required type="tel" placeholder="رقم الهاتف" class="w-full bg-transparent border border-[#D4A017]/40 px-4 py-2.5 text-sm text-white placeholder-stone-500 rounded-sm focus:border-[#D4A017]">
+                    <input required type="date" class="w-full bg-transparent border border-[#D4A017]/40 px-4 py-2.5 text-sm text-white rounded-sm focus:border-[#D4A017]">
+                    <select required class="w-full bg-transparent border border-[#D4A017]/40 px-4 py-2.5 text-sm text-white rounded-sm focus:border-[#D4A017]">
+                        <option value="" class="text-black">عدد الأفراد</option>
+                        <option class="text-black">2</option>
+                        <option class="text-black">4</option>
+                        <option class="text-black">6</option>
+                        <option class="text-black">أكثر</option>
+                    </select>
+                    <button type="submit" class="w-full bg-[#D4A017] text-black py-3 font-black text-sm hover:bg-[#b8880f] transition rounded-sm">تأكيد الحجز</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A0E08] text-stone-400 px-6 py-10 text-center border-t border-[#D4A017]/20">
+        <div class="flex items-center justify-center gap-2 mb-3">
+            <i class="fa-solid fa-utensils gold text-xl"></i>
+            <h2 class="text-2xl font-black text-white">الأصيل</h2>
+        </div>
+        <p class="text-xs">طعم الأصالة في كل لقمة</p>
+        <div class="flex gap-3 justify-center mt-4">
+            <a href="#" class="w-9 h-9 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#D4A017] hover:text-black transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a href="#" class="w-9 h-9 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#D4A017] hover:text-black transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="https://wa.me/201000000000" class="w-9 h-9 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#D4A017] hover:text-black transition"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+        </div>
+        <div class="pt-6 mt-6 border-t border-stone-800 text-stone-500 text-[11px]">
+            © 2026 مطعم الأصيل - جميع الحقوق محفوظة
+        </div>
+    </footer>
+
+    <!-- Side Menu -->
+    <div id="menu-drawer" class="fixed inset-0 z-50 pointer-events-none">
+        <div id="menu-overlay" onclick="toggleMenu()" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300"></div>
+        <div id="menu-panel" class="absolute top-0 right-0 h-full w-72 bg-[#2B1810] shadow-2xl menu-slide translate-x-full pointer-events-auto flex flex-col">
+            <div class="p-5 border-b border-[#D4A017]/30 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-utensils gold text-lg"></i>
+                    <h3 class="text-lg font-black text-white">الأصيل</h3>
+                </div>
+                <button onclick="toggleMenu()" class="text-stone-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <nav class="p-4 space-y-1 text-sm flex-1">
+                <a href="#home" onclick="toggleMenu()" class="flex items-center gap-3 px-4 py-3 rounded-sm hover:bg-white/5 text-white"><i class="fa-solid fa-house w-5 gold"></i> الرئيسية</a>
+                <a href="#menu" onclick="toggleMenu()" class="flex items-center gap-3 px-4 py-3 rounded-sm hover:bg-white/5 text-white"><i class="fa-solid fa-book-open w-5 gold"></i> المنيو</a>
+                <a href="#contact" onclick="toggleMenu()" class="flex items-center gap-3 px-4 py-3 rounded-sm hover:bg-white/5 text-white"><i class="fa-solid fa-phone w-5 gold"></i> تواصل معنا</a>
+            </nav>
+            <div class="p-4 border-t border-[#D4A017]/30">
+                <a href="https://wa.me/201000000000" class="flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-sm text-sm font-bold hover:bg-green-700 transition">
+                    <i class="fa-brands fa-whatsapp"></i> اطلب على واتساب
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60" onclick="closeModal()"></div>
+        <div class="relative bg-white rounded-sm shadow-2xl max-w-sm w-full p-8 text-center space-y-4">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                <i class="fa-solid fa-check text-green-600 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-black text-[#2B1810]">تم الحجز!</h3>
+            <p class="text-sm text-stone-600">هنتواصل معاك لتأكيد الحجز قريبًا.</p>
+            <button onclick="closeModal()" class="px-6 py-2.5 bg-[#2B1810] text-white font-bold text-sm rounded-sm hover:bg-black transition">تمام</button>
+        </div>
+    </div>
+
+    <script>
+        const dishes = [
+            { name: "كباب مشوي", price: 180, category: "مشويات", image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600", desc: "كباب لحم بلدي طازج" },
+            { name: "كفتة مشوية", price: 150, category: "مشويات", image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&q=80&w=600", desc: "كفتة لحم مفروم بالتوابل" },
+            { name: "فراخ مشوية", price: 130, category: "مشويات", image: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&q=80&w=600", desc: "نصف فرخة مشوية" },
+            { name: "ريش ضاني", price: 250, category: "مشويات", image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600", desc: "ريش ضاني طرية" },
+            { name: "رز بالخلطة", price: 45, category: "أطباق جانبية", image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&q=80&w=600", desc: "رز مصري بالتوابل" },
+            { name: "سلطة خضراء", price: 35, category: "أطباق جانبية", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600", desc: "سلطة طازجة" },
+            { name: "عصير مانجو", price: 40, category: "مشروبات", image: "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=600", desc: "مانجو طبيعي" },
+            { name: "شاي مصري", price: 15, category: "مشروبات", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&q=80&w=600", desc: "شاي مغربي" }
+        ];
+
+        function createDishCard(d) {
+            return `
+                <div class="dish-card bg-white rounded-sm overflow-hidden shadow-sm border border-stone-200">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="${d.image}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <h4 class="font-black text-sm text-[#2B1810]">${d.name}</h4>
+                        <p class="text-xs text-stone-500">${d.desc}</p>
+                        <div class="flex justify-between items-center pt-2 border-t border-stone-100">
+                            <span class="text-lg font-black text-[#8B0000]">${d.price} ج</span>
+                            <a href="https://wa.me/201000000000?text=أريد طلب: ${d.name}" target="_blank" class="w-9 h-9 bg-[#D4A017] rounded-full flex items-center justify-center hover:bg-[#b8880f] transition">
+                                <i class="fa-brands fa-whatsapp text-white text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDishes(filter = 'all') {
+            const grid = document.getElementById('dishes-grid');
+            const filtered = filter === 'all' ? dishes : dishes.filter(d => d.category === filter);
+            grid.innerHTML = filtered.map(createDishCard).join('');
+        }
+
+        function filterDishes(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderDishes(cat);
+        }
+
+        function toggleMenu() {
+            const panel = document.getElementById('menu-panel');
+            const overlay = document.getElementById('menu-overlay');
+            const parent = document.getElementById('menu-drawer');
+            if (panel.classList.contains('translate-x-full')) {
+                parent.classList.remove('pointer-events-none');
+                panel.classList.remove('translate-x-full');
+                overlay.classList.remove('opacity-0');
+                overlay.classList.add('opacity-100');
+            } else {
+                panel.classList.add('translate-x-full');
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => parent.classList.add('pointer-events-none'), 300);
+            }
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            document.getElementById('success-modal').classList.remove('hidden');
+            e.target.reset();
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => renderDishes('all'));
+    </script>
+</body>
+</html>
